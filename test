@@ -1,0 +1,46 @@
+from sys import stdin
+
+
+stdin = iter('''
+
+4
+define square x * x
+define two_x 2 * x
+define square_and_two_x square + two_x 
+calc square_and_two_x -2 -1 0 1 2
+
+'''.split("\n")[1:-1])
+
+
+functions = {
+    'x': lambda elem: float(elem),
+    'sqrt_fun': lambda elem: float(elem) ** 0.5
+}
+
+
+for element in stdin:
+    if "define" in element:
+        name, function1, operator, function2 = element.split()[1:]
+        if operator == '*':
+            if function1.isdigit():
+                functions[name] = lambda elem: float(function1) * functions[function2](elem)
+            else:
+                functions[name] = lambda elem: functions[function1](elem) * functions[function2](elem)
+        if operator == '+':
+            if function1.isdigit():
+                functions[name] = lambda elem: float(function1) + functions[function2](elem)
+            else:
+                functions[name] = lambda elem: functions[function1](elem) + functions[function2](elem)
+        if operator == '-':
+            if function1.isdigit():
+                functions[name] = lambda elem: float(function1) - functions[function2](elem)
+            else:
+                functions[name] = lambda elem: functions[function1](elem) - functions[function2](elem)
+        if operator == '/':
+            if function1.isdigit():
+                functions[name] = lambda elem: float(function1) / functions[function2](elem)
+            else:
+                functions[name] = lambda elem: functions[function1](elem) / functions[function2](elem)
+    elif "calc" in element:
+        litter, name, *args = element.split()
+        print(*map(lambda el: functions[name](el), args))
