@@ -3,7 +3,7 @@ from sys import stdin
 
 stdin = iter('''
 
-4
+6
 define square x * x
 define two_x 2 * x
 define square_and_two_x square + two_x 
