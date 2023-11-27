@@ -1,0 +1,21 @@
+1.
+В ветке master есть корневой коммит "fix readme", а затем идет разветвление, в котором
+происходит слияние указанных в задании удаленных веток в ветку "boots_buttons", после чего
+ветка снова оказывается единой,
+в то время как в ветке "demo" есть только 2 линейных коммита
+с добавлением веток "boots" и "buttons"
+
+2.
+В загруженной в репозиторий ветке "master" есть 10 коммитов
+от MobDev-Hobby:
+    init
+    heat added
+    boots
+    README added
+    dots
+    fix readme
+от меня
+    Merge remote-tracking branch 'origin/boots' into boots_buttons
+    Merge remote-tracking branch 'origin/buttons' into boots_buttons
+    Merge remote-tracking branch 'origin/hat'
+    Merge branch 'boots_buttons'
